@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">TestBS</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Login</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">Register</string>
+    <string name="loading">Loading…</string>
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
+    <string name="sign_up_error">Username must be between 4 and 32 characters\nPassword must be between 8 and 500 characters</string>
+    <string name="photos">Photos</string>
+    <string name="map">Map</string>
 </resources>

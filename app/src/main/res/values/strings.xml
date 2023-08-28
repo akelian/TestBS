@@ -14,4 +14,6 @@
     <string name="sign_up_error">Username must be between 4 and 32 characters\nPassword must be between 8 and 500 characters</string>
     <string name="photos">Photos</string>
     <string name="map">Map</string>
+    <string name="tap_back_button_twice_to_exit">Tap back button twice to exit</string>
+    <string name="empty_string" translatable="false"/>
 </resources>

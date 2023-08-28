@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import by.devnmisko.testbs.ui.loginscreen.StartUpFragmentViewModel
 import by.devnmisko.testbs.ui.mainscreen.MenuFragmentViewModel
+import by.devnmisko.testbs.ui.map.MapViewModel
 import by.devnmisko.testbs.utils.ViewModelFactory
 import by.devnmisko.testbs.utils.ViewModelKey
 import dagger.Binds

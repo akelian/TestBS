@@ -18,6 +18,7 @@ import by.devnmisko.testbs.R
 import by.devnmisko.testbs.databinding.FragmentStartupBinding
 import by.devnmisko.testbs.ui.base.BaseFragment
 import by.devnmisko.testbs.utils.collectLatestWhenStarted
+import by.devnmisko.testbs.utils.hideKeyboard
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -61,6 +62,7 @@ class StartupFragment : BaseFragment<FragmentStartupBinding>() {
                 when (output.status) {
                     Output.Status.SUCCESS -> {
                         dialog.dismiss()
+                        hideKeyboard()
                             findNavController().navigate(
                                 R.id.action_startupFragment_to_mainFragment,
                             )

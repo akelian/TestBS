@@ -1,53 +1,49 @@
 package by.devnmisko.testbs.ui.map
 
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import by.devnmisko.testbs.R
-import by.devnmisko.testbs.ui.mainscreen.MenuFragment
-
+import by.devnmisko.testbs.databinding.FragmentMapBinding
+import by.devnmisko.testbs.ui.base.BaseFragment
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.OnMapsSdkInitializedCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import timber.log.Timber
 
-class MapFragment : Fragment() {
+class MapFragment : BaseFragment<FragmentMapBinding>(), OnMapsSdkInitializedCallback {
 
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMapBinding
+        get() = FragmentMapBinding::inflate
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        MapsInitializer.initialize(requireContext(), MapsInitializer.Renderer.LATEST, this)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setupUI() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
-    companion object {
-        fun newInstance() = MenuFragment()
-    }
 
+    override fun onMapsSdkInitialized(renderer: MapsInitializer.Renderer) {
+        when (renderer) {
+            MapsInitializer.Renderer.LATEST -> Timber.d("The latest version of the renderer is used.")
+            MapsInitializer.Renderer.LEGACY -> Timber.d("The legacy version of the renderer is used.")
+        }
+    }
 }

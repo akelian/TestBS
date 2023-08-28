@@ -30,12 +30,16 @@ class MainActivity : AppCompatActivity() {
         navMainController = navHostFragment.navController
     }
 
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.title = getString(R.string.empty_string)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val menuFragment =
             supportFragmentManager.fragments[0].childFragmentManager.fragments[0] as MenuFragment
-
         if (item.itemId == android.R.id.home) menuFragment.openDrawer()
-
         return super.onOptionsItemSelected(item)
     }
+
 }

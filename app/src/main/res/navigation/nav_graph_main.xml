@@ -17,5 +17,5 @@
         android:id="@+id/mainFragment"
         android:name="by.devnmisko.testbs.ui.mainscreen.MenuFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_menu" />
 </navigation>

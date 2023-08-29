@@ -54,6 +54,10 @@ dependencies {
     implementation(AppDependencies.UI.lifecycle)
     implementation(AppDependencies.UI.constraint_layout)
     implementation(AppDependencies.UI.maps)
+    implementation(AppDependencies.UI.location)
+    implementation(AppDependencies.UI.camera_core)
+    implementation(AppDependencies.UI.camera_lifecycle)
+    implementation(AppDependencies.UI.camera_view)
 
     implementation(CommonDependencies.DI.dagger)
     implementation(CommonDependencies.DI.dagger_android)

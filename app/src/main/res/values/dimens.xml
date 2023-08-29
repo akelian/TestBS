@@ -2,18 +2,27 @@
 <resources>
     <dimen name="default_margin">@dimen/m12</dimen>
     <dimen name="default_margin_half">@dimen/m6</dimen>
+    <dimen name="default_margin_one_and_half">@dimen/m18</dimen>
     <dimen name="default_margin_double">@dimen/m24</dimen>
     <dimen name="default_padding">@dimen/m12</dimen>
-    <dimen name="default_padding_half">@dimen/m12</dimen>
+    <dimen name="default_padding_half">@dimen/m6</dimen>
+    <dimen name="default_padding_one_and_half">@dimen/m18</dimen>
     <dimen name="default_padding_double">@dimen/m24</dimen>
 
+    <!--  Text  -->
+    <dimen name="t18">18sp</dimen>
+    <dimen name="t20">20sp</dimen>
+
+    <!--  View  -->
+    <dimen name="m0">0dp</dimen>
     <dimen name="m4">4dp</dimen>
     <dimen name="m6">6dp</dimen>
     <dimen name="m12">12dp</dimen>
+    <dimen name="m18">18dp</dimen>
     <dimen name="m24">24dp</dimen>
     <dimen name="m32">32dp</dimen>
-    <dimen name="t18">18sp</dimen>
-    <dimen name="m0">0dp</dimen>
-    <dimen name="t20">20sp</dimen>
+    <dimen name="m50">50dp</dimen>
+    <dimen name="m80">80dp</dimen>
     <dimen name="m110">110dp</dimen>
+
 </resources>

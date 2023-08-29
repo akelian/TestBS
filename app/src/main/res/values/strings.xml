@@ -15,5 +15,11 @@
     <string name="photos">Photos</string>
     <string name="map">Map</string>
     <string name="tap_back_button_twice_to_exit">Tap back button twice to exit</string>
-    <string name="empty_string" translatable="false"/>
+    <string name="empty_string" translatable="false" />
+    <string name="empty_here">Empty here</string>
+    <string name="take_photo">Take photo\n</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="photo_loaded_successfully">Photo loaded successfully</string>
+    <string name="grant_permission_warning">You should grant Location and Camera permissions for this feature. Enable them in device settings.</string>
+    <string name="cannot_get_location">Cannot get location.</string>
 </resources>

@@ -2,9 +2,11 @@ package by.devnmisko.testbs.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import by.devnmisko.testbs.ui.camera.CameraViewModel
 import by.devnmisko.testbs.ui.loginscreen.StartUpFragmentViewModel
 import by.devnmisko.testbs.ui.mainscreen.MenuFragmentViewModel
 import by.devnmisko.testbs.ui.map.MapViewModel
+import by.devnmisko.testbs.ui.photos.PhotosViewModel
 import by.devnmisko.testbs.utils.ViewModelFactory
 import by.devnmisko.testbs.utils.ViewModelKey
 import dagger.Binds
@@ -29,4 +31,14 @@ abstract class ViewModelModule {
     @ViewModelKey(MenuFragmentViewModel::class)
     @Singleton
     internal abstract fun mainViewModel(viewModel: MenuFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PhotosViewModel::class)
+    internal abstract fun photoViewModel(viewModel: PhotosViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CameraViewModel::class)
+    internal abstract fun cameraViewModel(viewModel: CameraViewModel): ViewModel
 }

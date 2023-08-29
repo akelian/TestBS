@@ -1,9 +1,7 @@
 package by.devnmisko.testbs.ui.loginscreen
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -33,15 +31,22 @@ class StartupFragment : BaseFragment<FragmentStartupBinding>() {
 
     private val viewModel: StartUpFragmentViewModel by viewModels { viewModelFactory }
 
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentStartupBinding
+        get() = FragmentStartupBinding::inflate
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity as MainActivity).appComponent.inject(this)
     }
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentStartupBinding
-        get() = FragmentStartupBinding::inflate
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).supportActionBar?.hide()
+    }
 
     override fun setupUI() {
+        subscribeUI()
+
         val fragmentList = mutableListOf<Pair<Fragment, String>>()
         fragmentList.add(Pair(SignInFragment.newInstance(), getString(R.string.login)))
         fragmentList.add(Pair(SignUpFragment.newInstance(), getString(R.string.register)))
@@ -54,29 +59,25 @@ class StartupFragment : BaseFragment<FragmentStartupBinding>() {
         TabLayoutMediator(tabLayout, pager) { tab, position ->
             tab.text = fragmentList[position].second
         }.attach()
+    }
 
+    private fun subscribeUI() {
         val dialog = buildProgressDialog()
-
         viewLifecycleOwner.collectLatestWhenStarted(viewModel.loginState) { output: Output<SignUserDomainResponseModel>? ->
             output?.let {
                 when (output.status) {
                     Output.Status.SUCCESS -> {
-                        dialog.dismiss()
-                        hideKeyboard()
-                            findNavController().navigate(
-                                R.id.action_startupFragment_to_mainFragment,
-                            )
+                        findNavController().navigate(
+                            R.id.action_startupFragment_to_mainFragment,
+                        )
                     }
 
                     Output.Status.ERROR -> {
-                        dialog.dismiss()
                         val errorDialog = buildErrorDialog(output.message)
                         errorDialog.show()
                     }
 
-                    Output.Status.LOADING -> {
-                        dialog.show()
-                    }
+                    else -> {}
                 }
             }
         }
@@ -85,7 +86,6 @@ class StartupFragment : BaseFragment<FragmentStartupBinding>() {
             output?.let {
                 when (output.status) {
                     Output.Status.SUCCESS -> {
-                        dialog.dismiss()
                         Toast.makeText(context, "Account created", Toast.LENGTH_SHORT).show()
                         viewModel.viewModelScope.launch {
                             delay(1000)
@@ -101,24 +101,19 @@ class StartupFragment : BaseFragment<FragmentStartupBinding>() {
                         errorDialog.show()
                     }
 
-                    Output.Status.LOADING -> {
-                        dialog.show()
-                    }
+                    else -> {}
                 }
             }
         }
 
+        viewLifecycleOwner.collectLatestWhenStarted(viewModel.loadingState) { isLoading ->
+            if (isLoading) {
+                dialog.show()
+            } else {
+                dialog.dismiss()
+                hideKeyboard()
+            }
+        }
     }
 
-
-
-    private fun buildProgressDialog(): AlertDialog {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
-        val customLayout: View =
-            layoutInflater.inflate(R.layout.progress_dialog, null)
-        builder.setView(customLayout)
-        val dialog = builder.create()
-        dialog.setCanceledOnTouchOutside(false)
-        return dialog
-    }
 }

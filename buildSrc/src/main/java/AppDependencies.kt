@@ -9,6 +9,8 @@ object AppDependencies {
         private const val lifecycle_version = "2.2.0"
         private const val constraint_layout_version = "2.1.4"
         private const val maps_version = "18.1.0"
+        private const val location_version = "21.0.1"
+        private const val camera_version = "1.2.3"
 
         const val material = "com.google.android.material:material:$material_version"
         const val recycler_view = "androidx.recyclerview:recyclerview:$recycler_view_version"
@@ -19,5 +21,9 @@ object AppDependencies {
         const val lifecycle = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
         const val constraint_layout = "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
         const val maps = "com.google.android.gms:play-services-maps:$maps_version"
+        const val location = "com.google.android.gms:play-services-location:$location_version"
+        const val camera_core = "androidx.camera:camera-camera2:$camera_version"
+        const val camera_lifecycle = "androidx.camera:camera-lifecycle:$camera_version"
+        const val camera_view = "androidx.camera:camera-view:$camera_version"
     }
 }

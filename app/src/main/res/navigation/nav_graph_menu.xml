@@ -15,5 +15,19 @@
         android:name="by.devnmisko.testbs.ui.photos.PhotosFragment"
         android:label="fragment_photos"
         tools:layout="@layout/fragment_photos" >
+        <action
+            android:id="@+id/action_photosFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="by.devnmisko.testbs.ui.camera.CameraFragment"
+        android:label="CameraFragment" >
+        <action
+            android:id="@+id/action_cameraFragment_to_photosFragment"
+            app:destination="@id/photosFragment"
+            app:popUpTo="@id/photosFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
 </navigation>

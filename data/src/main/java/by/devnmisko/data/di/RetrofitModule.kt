@@ -2,6 +2,7 @@ package by.devnmisko.data.di
 
 import by.devnmisko.data.AppContracts
 import by.devnmisko.data.source.remote.CurlLoggingInterceptor
+import by.devnmisko.data.source.remote.api.ImagesApi
 import by.devnmisko.data.source.remote.api.SignInApi
 import by.devnmisko.data.source.remote.api.SignUpApi
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -20,7 +21,6 @@ object RetrofitModule {
     @Provides
     @Named("interceptor")
     fun provideLoggingInterceptor(): CurlLoggingInterceptor {
-        CurlLoggingInterceptor()
         return CurlLoggingInterceptor()
     }
 
@@ -53,6 +53,11 @@ object RetrofitModule {
     @Provides
     fun provideSignUpApi(@Named("Retrofit") retrofit: Retrofit): SignUpApi {
         return retrofit.create(SignUpApi::class.java)
+    }
+
+    @Provides
+    fun provideImagesApi(@Named("Retrofit") retrofit: Retrofit): ImagesApi {
+        return retrofit.create(ImagesApi::class.java)
     }
 
 

@@ -44,6 +44,16 @@ abstract class BaseFragment<ViewBindingType : ViewBinding> : Fragment() {
         return errorDialog
     }
 
+    protected fun buildProgressDialog(): AlertDialog {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        val customLayout: View =
+            layoutInflater.inflate(R.layout.progress_dialog, null)
+        builder.setView(customLayout)
+        val dialog = builder.create()
+        dialog.setCanceledOnTouchOutside(false)
+        return dialog
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -1,5 +1,9 @@
 package by.devnmisko.domain.di
 
+import by.devnmisko.domain.usecase.images.GetImagesUseCase
+import by.devnmisko.domain.usecase.images.GetImagesUseCaseImpl
+import by.devnmisko.domain.usecase.images.PostImageUseCase
+import by.devnmisko.domain.usecase.images.PostImageUseCaseImpl
 import by.devnmisko.domain.usecase.sharedpref.GetTokenUseCase
 import by.devnmisko.domain.usecase.sharedpref.GetTokenUseCaseImpl
 import by.devnmisko.domain.usecase.sharedpref.GetUsernameUseCase
@@ -31,4 +35,10 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     internal abstract fun bindGetUserNameUseCase(useCaseImpl: GetUsernameUseCaseImpl): GetUsernameUseCase
+    @Binds
+    @Singleton
+    internal abstract fun bindGetListUseCase(useCaseImpl: GetImagesUseCaseImpl): GetImagesUseCase
+    @Binds
+    @Singleton
+    internal abstract fun bindPostImageUseCase(useCaseImpl: PostImageUseCaseImpl): PostImageUseCase
 }

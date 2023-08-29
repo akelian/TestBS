@@ -3,6 +3,8 @@ package by.devnmisko.testbs
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNDEFINED
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import by.devnmisko.testbs.databinding.ActivityMainBinding
@@ -33,6 +35,16 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         supportActionBar?.title = getString(R.string.empty_string)
+    }
+
+    fun lockDrawer(isLocked : Boolean){
+        val menuFragment =
+            supportFragmentManager.fragments[0].childFragmentManager.fragments[0] as MenuFragment
+        if (isLocked) {
+            menuFragment.binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        } else {
+            menuFragment.binding.drawerLayout.setDrawerLockMode(LOCK_MODE_UNDEFINED)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

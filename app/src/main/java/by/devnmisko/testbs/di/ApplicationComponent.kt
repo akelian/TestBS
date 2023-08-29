@@ -8,12 +8,16 @@ import by.devnmisko.data.di.SharedPrefRepositoryModule
 import by.devnmisko.domain.di.UseCaseModule
 import by.devnmisko.testbs.App
 import by.devnmisko.testbs.MainActivity
+import by.devnmisko.testbs.ui.camera.CameraFragment
+import by.devnmisko.testbs.ui.camera.CameraViewModel
 import by.devnmisko.testbs.ui.loginscreen.SignInFragment
 import by.devnmisko.testbs.ui.loginscreen.SignUpFragment
 import by.devnmisko.testbs.ui.loginscreen.StartUpFragmentViewModel
 import by.devnmisko.testbs.ui.loginscreen.StartupFragment
 import by.devnmisko.testbs.ui.mainscreen.MenuFragment
 import by.devnmisko.testbs.ui.mainscreen.MenuFragmentViewModel
+import by.devnmisko.testbs.ui.photos.PhotosFragment
+import by.devnmisko.testbs.ui.photos.PhotosViewModel
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -46,5 +50,10 @@ interface ApplicationComponent : AndroidInjector<App> {
     fun inject(model: StartUpFragmentViewModel)
     fun inject(fragment: MenuFragment)
     fun inject(model: MenuFragmentViewModel)
+    fun inject(fragment: PhotosFragment)
+    fun inject(model: PhotosViewModel)    
+    
+    fun inject(fragment: CameraFragment)
+    fun inject(model: CameraViewModel)
 
 }

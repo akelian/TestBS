@@ -25,6 +25,10 @@ class StartUpFragmentViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
     private val saveUserUseCase: SaveUserUseCase,
 ) : ViewModel() {
+
+    private val _loadingState = MutableStateFlow(false)
+    internal val loadingState: StateFlow<Boolean> = _loadingState
+
     private val _loginState = MutableStateFlow<Output<SignUserDomainResponseModel>?>(null)
     internal val loginState: StateFlow<Output<SignUserDomainResponseModel>?> = _loginState
 
@@ -34,8 +38,14 @@ class StartUpFragmentViewModel @Inject constructor(
     fun login(input: SignUserAppRequestModel) = viewModelScope.launch {
         signInUseCase(input.toDomainModel()).onEach {
             _loginState.value = it
-            if (it.status == Output.Status.SUCCESS) {
-                saveCredentials(it.data)
+            when (it.status) {
+                    Output.Status.SUCCESS-> {
+                        saveCredentials(it.data)
+                        _loadingState.value = false
+                    }
+
+                Output.Status.ERROR -> _loadingState.value = false
+                Output.Status.LOADING -> _loadingState.value = true
             }
         }.collect()
     }
@@ -43,6 +53,7 @@ class StartUpFragmentViewModel @Inject constructor(
     fun signUp(input: SignUserAppRequestModel) = viewModelScope.launch {
         signUpUseCase(input.toDomainModel()).onEach {
             _sigUpState.value = it
+            _loadingState.value = it.status == Output.Status.LOADING
         }.collect()
     }
 

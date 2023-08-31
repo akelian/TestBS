@@ -16,4 +16,7 @@ dependencies {
     implementation(CommonDependencies.DI.dagger_android)
     kapt(CommonDependencies.DI.dagger_compiler)
     kapt(CommonDependencies.DI.dagger_apt)
+
+    implementation(DataDependencies.Data.paging)
+
 }

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "by.devnmisko.testbs"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "by.devnmisko.testbs"
@@ -58,6 +58,8 @@ dependencies {
     implementation(AppDependencies.UI.camera_core)
     implementation(AppDependencies.UI.camera_lifecycle)
     implementation(AppDependencies.UI.camera_view)
+    implementation(AppDependencies.UI.paging)
+    implementation(AppDependencies.UI.glide)
 
     implementation(CommonDependencies.DI.dagger)
     implementation(CommonDependencies.DI.dagger_android)

@@ -11,7 +11,7 @@ object CommonDependencies {
     }
 
     object Threads {
-        private const val coroutines_version = "1.3.9"
+        private const val coroutines_version = "1.6.4"
 
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"

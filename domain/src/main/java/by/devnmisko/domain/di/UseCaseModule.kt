@@ -4,8 +4,8 @@ import by.devnmisko.domain.usecase.images.GetImagesUseCase
 import by.devnmisko.domain.usecase.images.GetImagesUseCaseImpl
 import by.devnmisko.domain.usecase.images.PostImageUseCase
 import by.devnmisko.domain.usecase.images.PostImageUseCaseImpl
-import by.devnmisko.domain.usecase.sharedpref.GetTokenUseCase
-import by.devnmisko.domain.usecase.sharedpref.GetTokenUseCaseImpl
+import by.devnmisko.domain.usecase.images.RemoveImageUseCase
+import by.devnmisko.domain.usecase.images.RemoveImageUseCaseImpl
 import by.devnmisko.domain.usecase.sharedpref.GetUsernameUseCase
 import by.devnmisko.domain.usecase.sharedpref.GetUsernameUseCaseImpl
 import by.devnmisko.domain.usecase.sharedpref.SaveUserUseCase
@@ -31,9 +31,6 @@ abstract class UseCaseModule {
     internal abstract fun bindSaveUser(useCaseImpl: SaveUserUseCaseImpl): SaveUserUseCase
     @Binds
     @Singleton
-    internal abstract fun bindGetTokenUseCase(useCaseImpl: GetTokenUseCaseImpl): GetTokenUseCase
-    @Binds
-    @Singleton
     internal abstract fun bindGetUserNameUseCase(useCaseImpl: GetUsernameUseCaseImpl): GetUsernameUseCase
     @Binds
     @Singleton
@@ -41,4 +38,8 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     internal abstract fun bindPostImageUseCase(useCaseImpl: PostImageUseCaseImpl): PostImageUseCase
+
+    @Binds
+    @Singleton
+    internal abstract fun bindRemoveImageUseCase(useCaseImpl: RemoveImageUseCaseImpl): RemoveImageUseCase
 }

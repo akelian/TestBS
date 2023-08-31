@@ -6,13 +6,21 @@ plugins {
 
 android {
     namespace = "by.devnmisko.data"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true"
+                )
+            }
+        }
     }
 
     buildTypes {
@@ -24,6 +32,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -46,9 +55,9 @@ dependencies {
     api(DataDependencies.Networking.okhttp)
     api(DataDependencies.Networking.okhttp_logging_interceptor)
 
-    implementation(DataDependencies.Data.room_ktx)
     api(DataDependencies.Data.room_runtime)
-    annotationProcessor(DataDependencies.Data.room_compiler)
+    api(DataDependencies.Data.room_ktx)
+    api(DataDependencies.Data.room_paging)
     kapt(DataDependencies.Data.room_compiler)
 
     implementation(CommonDependencies.DI.dagger)

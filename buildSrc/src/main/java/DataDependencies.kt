@@ -17,10 +17,13 @@ object DataDependencies {
     }
 
     object Data {
-        private const val room_version = "2.5.2"
+        private const val room_version = "2.6.0-alpha02"
+        private const val paging_version = "3.2.0"
 
         const val room_ktx = "androidx.room:room-ktx:$room_version"
         const val room_runtime = "androidx.room:room-runtime:$room_version"
         const val room_compiler = "androidx.room:room-compiler:$room_version"
+        const val room_paging = "androidx.room:room-paging:$room_version"
+        const val paging = "androidx.paging:paging-common-ktx:$paging_version"
     }
 }

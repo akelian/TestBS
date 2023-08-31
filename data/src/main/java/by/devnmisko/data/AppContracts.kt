@@ -5,4 +5,5 @@ object AppContracts {
     internal const val PREFS = "prefs"
     internal const val TOKEN = "token"
     internal const val USERNAME = "username"
+    internal const val IMAGES_DATABASE = "images_db"
 }

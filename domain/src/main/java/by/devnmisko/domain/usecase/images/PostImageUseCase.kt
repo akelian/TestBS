@@ -6,5 +6,5 @@ import by.devnmisko.domain.model.Output
 import kotlinx.coroutines.flow.Flow
 
 interface PostImageUseCase {
-    operator fun invoke(image: ImageDomainRequestModel) : Flow<Output<ImageDomainResponseModel>>
+    suspend operator fun invoke(image: ImageDomainRequestModel) : Flow<Output<ImageDomainResponseModel>>
 }

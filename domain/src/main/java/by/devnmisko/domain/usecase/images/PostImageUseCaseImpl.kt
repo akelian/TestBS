@@ -10,7 +10,7 @@ import javax.inject.Inject
 class PostImageUseCaseImpl @Inject constructor(
     private val imagesRepository: ImagesRepository
 ) : PostImageUseCase{
-    override fun invoke(image: ImageDomainRequestModel): Flow<Output<ImageDomainResponseModel>> {
+    override suspend fun invoke(image: ImageDomainRequestModel): Flow<Output<ImageDomainResponseModel>> {
        return imagesRepository.postImage(image)
     }
 

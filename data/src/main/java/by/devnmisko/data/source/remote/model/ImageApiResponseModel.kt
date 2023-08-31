@@ -1,5 +1,6 @@
 package by.devnmisko.data.source.remote.model
 
+import by.devnmisko.data.source.local.model.ImageApiEntity
 import by.devnmisko.domain.model.ImageDomainResponseModel
 import com.google.gson.annotations.SerializedName
 
@@ -15,7 +16,17 @@ fun ImageApiResponseModel.toDomainModel(): ImageDomainResponseModel {
     return ImageDomainResponseModel(
         id = id,
         url = url,
-        date = date,
+        date = date * 1000,
+        lat = lat,
+        lng = lng
+    )
+}
+
+fun ImageApiResponseModel.toEntity(): ImageApiEntity {
+    return ImageApiEntity(
+        id = id,
+        url = url,
+        date = date * 1000,
         lat = lat,
         lng = lng
     )

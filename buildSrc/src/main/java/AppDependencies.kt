@@ -11,6 +11,8 @@ object AppDependencies {
         private const val maps_version = "18.1.0"
         private const val location_version = "21.0.1"
         private const val camera_version = "1.2.3"
+        private const val paging_version = "3.1.1"
+        private const val glide_version = "4.16.0"
 
         const val material = "com.google.android.material:material:$material_version"
         const val recycler_view = "androidx.recyclerview:recyclerview:$recycler_view_version"
@@ -25,5 +27,7 @@ object AppDependencies {
         const val camera_core = "androidx.camera:camera-camera2:$camera_version"
         const val camera_lifecycle = "androidx.camera:camera-lifecycle:$camera_version"
         const val camera_view = "androidx.camera:camera-view:$camera_version"
+        const val paging = "androidx.paging:paging-runtime:$paging_version"
+        const val glide = "com.github.bumptech.glide:glide:$glide_version"
     }
 }

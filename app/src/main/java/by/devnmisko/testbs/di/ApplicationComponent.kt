@@ -1,6 +1,7 @@
 package by.devnmisko.testbs.di
 
 import android.app.Application
+import by.devnmisko.data.di.LocalDatabaseModule
 import by.devnmisko.data.di.RemoteRepositoryModule
 import by.devnmisko.data.di.RetrofitModule
 import by.devnmisko.data.di.SharedPrefModule
@@ -28,7 +29,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [AndroidInjectionModule::class, AndroidModule::class, RetrofitModule::class, RemoteRepositoryModule::class, UseCaseModule::class,
-        ViewModelModule::class, SharedPrefModule::class, SharedPrefRepositoryModule::class]
+        ViewModelModule::class, SharedPrefModule::class, SharedPrefRepositoryModule::class, LocalDatabaseModule::class]
 )
 interface ApplicationComponent : AndroidInjector<App> {
 

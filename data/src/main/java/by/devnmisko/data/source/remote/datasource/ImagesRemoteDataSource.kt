@@ -28,4 +28,13 @@ class ImagesRemoteDataSource @Inject constructor(
             defaultErrorMessage = "Something went wrong"
         )
     }
+
+    suspend fun removeImage(id: Int): Output<BaseResponseModel<Void>> {
+        return getResponse(
+            request = { imagesApi.removeImage(sharedPreferencesSource.getToken(), id) },
+            defaultErrorMessage = "Something went wrong"
+        )
+    }
+
+
 }

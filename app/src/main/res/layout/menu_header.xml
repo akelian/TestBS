@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/m110"
+    android:background="@color/balina_green"
+    android:gravity="bottom"
+    android:padding="@dimen/default_padding_double"
+    android:textColor="@color/white"
+    android:textSize="@dimen/t18"
+    tools:text="Username" />

@@ -1,4 +1,33 @@
 <resources>
     <string name="app_name">TestBS</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Login</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">Register</string>
+    <string name="loading">Loading…</string>
+    <string name="ok">OK</string>
+    <string name="error">Error</string>
+    <string name="sign_up_error">Username must be between 4 and 32 characters\nPassword must be between 8 and 500 characters</string>
+    <string name="photos">Photos</string>
+    <string name="map">Map</string>
+    <string name="tap_back_button_twice_to_exit">Tap back button twice to exit</string>
+    <string name="empty_string" translatable="false" />
+    <string name="empty_here">Empty here</string>
+    <string name="take_photo">Take photo\n</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="photo_loaded_successfully">Photo loaded successfully</string>
+    <string name="grant_permission_warning">You should grant Location and Camera permissions for this feature. Enable them in device settings.</string>
+    <string name="cannot_get_location">Cannot get location.</string>
+    <string name="image_successfully_remove">Image successfully removed</string>
+    <string name="comment_successfully_remove">Comment successfully removed</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">Remove</string>
+    <string name="send_comment">Send comment</string>
+    <string name="long_text_placeholder" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="short_text_placeholder" translatable="false">Short text</string>
+    <string name="please_confirm_removing">Please confirm removing</string>
 </resources>

@@ -2,10 +2,56 @@ package by.devnmisko.testbs
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNDEFINED
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import by.devnmisko.testbs.databinding.ActivityMainBinding
+import by.devnmisko.testbs.di.ApplicationComponent
+import by.devnmisko.testbs.ui.mainscreen.MenuFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    lateinit var appComponent: ApplicationComponent
+
+    private lateinit var navMainController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent = (applicationContext as App).getComponent()
+        appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_container) as NavHostFragment
+        navMainController = navHostFragment.navController
     }
+
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.title = getString(R.string.empty_string)
+    }
+
+    fun lockDrawer(isLocked : Boolean){
+        val menuFragment =
+            supportFragmentManager.fragments[0].childFragmentManager.fragments[0] as MenuFragment
+        if (isLocked) {
+            menuFragment.binding.drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        } else {
+            menuFragment.binding.drawerLayout.setDrawerLockMode(LOCK_MODE_UNDEFINED)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val menuFragment =
+            supportFragmentManager.fragments[0].childFragmentManager.fragments[0] as MenuFragment
+        if (item.itemId == android.R.id.home) menuFragment.openDrawer()
+        return super.onOptionsItemSelected(item)
+    }
+
 }

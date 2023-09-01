@@ -2,11 +2,12 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id ("kotlin-kapt")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
     namespace = "by.devnmisko.testbs"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "by.devnmisko.testbs"
@@ -30,7 +31,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    buildFeatures{
+        viewBinding = true
     }
 }
 
@@ -48,12 +53,16 @@ dependencies {
     implementation(AppDependencies.UI.fragment)
     implementation(AppDependencies.UI.lifecycle)
     implementation(AppDependencies.UI.constraint_layout)
+    implementation(AppDependencies.UI.maps)
+    implementation(AppDependencies.UI.location)
+    implementation(AppDependencies.UI.camera_core)
+    implementation(AppDependencies.UI.camera_lifecycle)
+    implementation(AppDependencies.UI.camera_view)
+    implementation(AppDependencies.UI.paging)
+    implementation(AppDependencies.UI.glide)
 
     implementation(CommonDependencies.DI.dagger)
     implementation(CommonDependencies.DI.dagger_android)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     kapt(CommonDependencies.DI.dagger_compiler)
     kapt(CommonDependencies.DI.dagger_apt)
 

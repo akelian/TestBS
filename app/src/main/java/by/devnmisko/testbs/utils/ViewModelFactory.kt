@@ -2,7 +2,9 @@ package by.devnmisko.testbs.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import by.devnmisko.testbs.ui.photodetail.ImageDetailViewModel
 import dagger.MapKey
+import dagger.assisted.AssistedFactory
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

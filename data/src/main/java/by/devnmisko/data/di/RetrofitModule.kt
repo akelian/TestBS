@@ -2,6 +2,7 @@ package by.devnmisko.data.di
 
 import by.devnmisko.data.AppContracts
 import by.devnmisko.data.source.remote.CurlLoggingInterceptor
+import by.devnmisko.data.source.remote.api.CommentsApi
 import by.devnmisko.data.source.remote.api.ImagesApi
 import by.devnmisko.data.source.remote.api.SignInApi
 import by.devnmisko.data.source.remote.api.SignUpApi
@@ -58,6 +59,11 @@ object RetrofitModule {
     @Provides
     fun provideImagesApi(@Named("Retrofit") retrofit: Retrofit): ImagesApi {
         return retrofit.create(ImagesApi::class.java)
+    }
+
+    @Provides
+    fun provideCommentsApi(@Named("Retrofit") retrofit: Retrofit): CommentsApi {
+        return retrofit.create(CommentsApi::class.java)
     }
 
 

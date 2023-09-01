@@ -1,8 +1,10 @@
 package by.devnmisko.data.di
 
 import by.devnmisko.data.repository.AccountRepositoryImpl
+import by.devnmisko.data.repository.CommentsRepositoryImpl
 import by.devnmisko.data.repository.ImagesRepositoryImpl
 import by.devnmisko.domain.repository.AccountRepository
+import by.devnmisko.domain.repository.CommentsRepository
 import by.devnmisko.domain.repository.ImagesRepository
 import dagger.Binds
 import dagger.Module
@@ -18,5 +20,9 @@ abstract class RemoteRepositoryModule {
     @Binds
     @Singleton
     internal abstract fun bindImagesRepository(repository: ImagesRepositoryImpl): ImagesRepository
+
+    @Binds
+    @Singleton
+    internal abstract fun bindCommentsRepository(repository: CommentsRepositoryImpl): CommentsRepository
 
 }

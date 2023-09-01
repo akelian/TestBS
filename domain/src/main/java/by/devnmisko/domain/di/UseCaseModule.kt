@@ -1,5 +1,11 @@
 package by.devnmisko.domain.di
 
+import by.devnmisko.domain.usecase.comments.GetCommentsUseCase
+import by.devnmisko.domain.usecase.comments.GetCommentsUseCaseImpl
+import by.devnmisko.domain.usecase.comments.PostCommentUseCase
+import by.devnmisko.domain.usecase.comments.PostCommentUseCaseImpl
+import by.devnmisko.domain.usecase.comments.RemoveCommentUseCase
+import by.devnmisko.domain.usecase.comments.RemoveCommentUseCaseImpl
 import by.devnmisko.domain.usecase.images.GetImagesFromDBUseCase
 import by.devnmisko.domain.usecase.images.GetImagesFromDBUseCaseImpl
 import by.devnmisko.domain.usecase.images.GetImagesUseCase
@@ -46,4 +52,13 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     internal abstract fun bindGetImagesUseCase(useCaseImpl: GetImagesFromDBUseCaseImpl): GetImagesFromDBUseCase
+    @Binds
+    @Singleton
+    internal abstract fun bindPostCommentUseCase(useCaseImpl: PostCommentUseCaseImpl): PostCommentUseCase
+    @Binds
+    @Singleton
+    internal abstract fun bindRemoveCommentUseCase(useCaseImpl: RemoveCommentUseCaseImpl): RemoveCommentUseCase
+    @Binds
+    @Singleton
+    internal abstract fun bindGetCommentsUseCase(useCaseImpl: GetCommentsUseCaseImpl): GetCommentsUseCase
 }

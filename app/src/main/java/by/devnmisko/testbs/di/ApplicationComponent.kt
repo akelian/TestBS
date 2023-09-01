@@ -19,6 +19,8 @@ import by.devnmisko.testbs.ui.mainscreen.MenuFragment
 import by.devnmisko.testbs.ui.mainscreen.MenuFragmentViewModel
 import by.devnmisko.testbs.ui.map.MapFragment
 import by.devnmisko.testbs.ui.map.MapViewModel
+import by.devnmisko.testbs.ui.photodetail.ImageDetailFragment
+import by.devnmisko.testbs.ui.photodetail.ImageDetailViewModel
 import by.devnmisko.testbs.ui.photos.PhotosFragment
 import by.devnmisko.testbs.ui.photos.PhotosViewModel
 import dagger.BindsInstance
@@ -60,5 +62,8 @@ interface ApplicationComponent : AndroidInjector<App> {
     fun inject(model: CameraViewModel)
     fun inject(fragment: MapFragment)
     fun inject(model: MapViewModel)
+
+    fun inject(fragment: ImageDetailFragment)
+    fun inject(model: ImageDetailViewModel)
 
 }

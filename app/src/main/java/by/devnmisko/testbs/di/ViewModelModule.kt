@@ -6,11 +6,13 @@ import by.devnmisko.testbs.ui.camera.CameraViewModel
 import by.devnmisko.testbs.ui.loginscreen.StartUpFragmentViewModel
 import by.devnmisko.testbs.ui.mainscreen.MenuFragmentViewModel
 import by.devnmisko.testbs.ui.map.MapViewModel
+import by.devnmisko.testbs.ui.photodetail.ImageDetailViewModel
 import by.devnmisko.testbs.ui.photos.PhotosViewModel
 import by.devnmisko.testbs.utils.ViewModelFactory
 import by.devnmisko.testbs.utils.ViewModelKey
 import dagger.Binds
 import dagger.Module
+import dagger.assisted.AssistedFactory
 import dagger.multibindings.IntoMap
 import javax.inject.Singleton
 
@@ -46,4 +48,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MapViewModel::class)
     internal abstract fun mapViewModel(viewModel: MapViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(ImageDetailViewModel.Factory::class)
+//    internal abstract fun imageDetailViewModel(viewModel: ImageDetailViewModel.Factory): ViewModel
+
 }

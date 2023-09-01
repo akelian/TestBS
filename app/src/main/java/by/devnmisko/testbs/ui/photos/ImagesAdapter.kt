@@ -14,10 +14,10 @@ import by.devnmisko.testbs.utils.getDate
 import com.bumptech.glide.Glide
 
 
-class ImagesAdapter(private val onImageLongPressListener: OnImageLongPressListener) :
+class ImagesAdapter(private val onImageLongPressListener: OnImageLongPressListener, private val onImageClickListener: OnImageClickListener) :
     PagingDataAdapter<ImageDomainResponseModel, ImagesAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var context : Context
-
+    private val thumbnailSize = 100
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         context = recyclerView.context
         super.onAttachedToRecyclerView(recyclerView)
@@ -33,11 +33,14 @@ class ImagesAdapter(private val onImageLongPressListener: OnImageLongPressListen
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val photo = getPhoto(position)
         with(photo){
-            Glide.with(context).load(this?.url).placeholder(ColorDrawable(Color.GRAY)).into(holder.binding.photo)
+            Glide.with(context).load(this?.url).placeholder(ColorDrawable(Color.GRAY)).override(thumbnailSize, thumbnailSize).into(holder.binding.photo)
             holder.binding.photoName.text = getDate(this?.date ?: 0)
             holder.binding.root.setOnLongClickListener {
                 onImageLongPressListener.removeImage(this?.id)
                 true // returning true instead of false, works for me
+            }
+            holder.binding.root.setOnClickListener {
+                onImageClickListener.openImageDetail(this)
             }
 
         }

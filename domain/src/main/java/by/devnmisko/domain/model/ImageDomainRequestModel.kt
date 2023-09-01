@@ -6,6 +6,4 @@ data class ImageDomainRequestModel (
     val date: Long,
     val lat: Double,
     val lng: Double
-) {
-
-}
+)

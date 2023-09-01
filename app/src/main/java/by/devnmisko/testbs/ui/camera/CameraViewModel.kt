@@ -25,7 +25,7 @@ class CameraViewModel @Inject constructor(
     internal val postImageResponse: StateFlow<Output<ImageDomainResponseModel>?> = _postImageResponse
 
     fun postImage(image: ImageDomainRequestModel) = viewModelScope.launch {
-        postImageUseCase.invoke(image).onEach {
+        postImageUseCase(image).onEach {
             _loadingState.value = it.status == Output.Status.LOADING
             _postImageResponse.value = it
         }.collect()

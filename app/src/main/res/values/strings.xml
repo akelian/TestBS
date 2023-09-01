@@ -22,8 +22,12 @@
     <string name="photo_loaded_successfully">Photo loaded successfully</string>
     <string name="grant_permission_warning">You should grant Location and Camera permissions for this feature. Enable them in device settings.</string>
     <string name="cannot_get_location">Cannot get location.</string>
-    <string name="image_successfully_remove">Image successfully remove</string>
+    <string name="image_successfully_remove">Image successfully removed</string>
+    <string name="comment_successfully_remove">Comment successfully removed</string>
     <string name="cancel">Cancel</string>
     <string name="remove">Remove</string>
+    <string name="send_comment">Send comment</string>
+    <string name="long_text_placeholder" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="short_text_placeholder" translatable="false">Short text</string>
     <string name="please_confirm_removing">Please confirm removing</string>
 </resources>

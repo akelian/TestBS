@@ -41,4 +41,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CameraViewModel::class)
     internal abstract fun cameraViewModel(viewModel: CameraViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MapViewModel::class)
+    internal abstract fun mapViewModel(viewModel: MapViewModel): ViewModel
 }

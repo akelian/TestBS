@@ -5,13 +5,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import by.devnmisko.domain.model.Output
-import by.devnmisko.domain.repository.ImagesRepository
 import by.devnmisko.domain.usecase.images.GetImagesUseCase
 import by.devnmisko.domain.usecase.images.RemoveImageUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -31,6 +31,8 @@ class PhotosViewModel @Inject constructor(
     fun removeImage(id: Int) = viewModelScope.launch {
         removeImageUseCase(id).onEach { output ->
             _removeState.value = output
+        }.onCompletion {
+            _removeState.value = null
         }.collect()
     }
 

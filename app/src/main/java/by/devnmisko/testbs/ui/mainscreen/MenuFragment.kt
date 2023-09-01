@@ -63,6 +63,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding>() {
             supportActionBar?.let {
                 it.setDisplayHomeAsUpEnabled(true)
                 it.setHomeAsUpIndicator(R.drawable.ic_menu)
+                it.show()
             }
         }
         (binding.navigation.getHeaderView(0) as TextView).text = viewModel.getUsername()

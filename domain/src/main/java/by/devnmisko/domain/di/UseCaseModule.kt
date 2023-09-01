@@ -1,5 +1,7 @@
 package by.devnmisko.domain.di
 
+import by.devnmisko.domain.usecase.images.GetImagesFromDBUseCase
+import by.devnmisko.domain.usecase.images.GetImagesFromDBUseCaseImpl
 import by.devnmisko.domain.usecase.images.GetImagesUseCase
 import by.devnmisko.domain.usecase.images.GetImagesUseCaseImpl
 import by.devnmisko.domain.usecase.images.PostImageUseCase
@@ -38,8 +40,10 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     internal abstract fun bindPostImageUseCase(useCaseImpl: PostImageUseCaseImpl): PostImageUseCase
-
     @Binds
     @Singleton
     internal abstract fun bindRemoveImageUseCase(useCaseImpl: RemoveImageUseCaseImpl): RemoveImageUseCase
+    @Binds
+    @Singleton
+    internal abstract fun bindGetImagesUseCase(useCaseImpl: GetImagesFromDBUseCaseImpl): GetImagesFromDBUseCase
 }

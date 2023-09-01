@@ -30,6 +30,9 @@ class ImagesRepositoryImpl @Inject constructor(
     private val imagesRemoteMediator: ImagesRemoteMediator,
 ) : ImagesRepository, BaseRepository() {
 
+    override val allImages: Flow<List<ImageDomainResponseModel>> = imagesDao.allImagesEntries()
+        .map { list -> list.map { it.toDomainModel() } }
+
     @OptIn(ExperimentalPagingApi::class)
     override fun getImages(): Flow<PagingData<ImageDomainResponseModel>> {
         val paging = Pager(

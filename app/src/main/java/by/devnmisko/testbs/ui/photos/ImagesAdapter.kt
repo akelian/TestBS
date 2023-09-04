@@ -34,6 +34,7 @@ class ImagesAdapter(private val onImageLongPressListener: OnImageLongPressListen
         val photo = getPhoto(position)
         with(photo){
             Glide.with(context).load(this?.url).placeholder(ColorDrawable(Color.GRAY)).override(thumbnailSize, thumbnailSize).into(holder.binding.photo)
+            holder.binding.photo.rotation = 90F
             holder.binding.photoName.text = getDate(this?.date ?: 0)
             holder.binding.root.setOnLongClickListener {
                 onImageLongPressListener.removeImage(this?.id)

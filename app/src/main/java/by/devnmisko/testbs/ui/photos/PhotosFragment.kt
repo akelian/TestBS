@@ -84,7 +84,7 @@ class PhotosFragment : BaseFragment<FragmentPhotosBinding>(), OnImageLongPressLi
 
                     Output.Status.ERROR -> {
                         binding.progress.hide()
-                        buildErrorDialog(output.message)
+                        buildErrorDialog(output.message).show()
                     }
 
                     Output.Status.LOADING -> {

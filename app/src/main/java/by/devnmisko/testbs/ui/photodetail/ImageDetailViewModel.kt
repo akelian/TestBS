@@ -3,6 +3,7 @@ package by.devnmisko.testbs.ui.photodetail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import by.devnmisko.data.paging.CommentsPagingSource
 import by.devnmisko.domain.model.CommentDomainRequestModel
 import by.devnmisko.domain.model.CommentDomainResponseModel
@@ -14,7 +15,6 @@ import by.devnmisko.domain.usecase.comments.RemoveCommentUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class ImageDetailViewModel @AssistedInject constructor(
     getCommentsUseCase: GetCommentsUseCase,
@@ -32,7 +31,7 @@ class ImageDetailViewModel @AssistedInject constructor(
     @Assisted("imageId") private val imageId: Int
 ) : ViewModel() {
 
-    val allComments = getCommentsUseCase(imageId).stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+    val allComments = getCommentsUseCase(imageId).stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty()).cachedIn(viewModelScope)
 
     private val _postCommentState = MutableStateFlow<Output<CommentDomainResponseModel>?>(null)
     val postCommentState : StateFlow<Output<CommentDomainResponseModel>?> = _postCommentState

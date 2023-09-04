@@ -3,7 +3,11 @@ package by.devnmisko.testbs.ui.camera
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Location
+import android.content.Intent
+import android.location.LocationManager
+import android.os.Looper
+import android.provider.Settings
+import android.util.Rational
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -32,11 +36,16 @@ import by.devnmisko.testbs.utils.hasLocationPermission
 import by.devnmisko.testbs.utils.imageProxyToBitmap
 import by.devnmisko.testbs.utils.requestPermissionForResult
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.inject.Inject
+
 
 class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
@@ -51,8 +60,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var location: Pair<Double, Double> = 0.0 to 0.0
-    private var preview: Preview? = null
 
+    private var preview: Preview? = null
     private var imageCapture: ImageCapture? = null
     private var camera: Camera? = null
     private lateinit var cameraExecutor: ExecutorService
@@ -62,6 +71,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
         (activity as MainActivity).appComponent.inject(this)
         fusedLocationClient =
             LocationServices.getFusedLocationProviderClient(activity as MainActivity)
+
     }
 
     @SuppressLint("MissingPermission")
@@ -84,7 +94,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
             if (isLoading) {
                 dialog.show()
             } else {
-                dialog.hide()
+                dialog.dismiss()
             }
         }
 
@@ -165,7 +175,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
                 Timber.e(exception.message)
             }
         }
-
         imageCapture.takePicture(ContextCompat.getMainExecutor(appContext), onImageCaptureCallback)
     }
 
@@ -173,20 +182,54 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>() {
     private fun requestCurrentLocation() {
 
         if (hasLocationPermission(appContext)) {
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    if (location == null) {
-                        Toast.makeText(appContext,
-                            getString(R.string.cannot_get_location), Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        this.location = location.latitude to location.longitude
-
+            // check if location is enabled
+            if (isLocationEnabled()) {
+                fusedLocationClient.lastLocation
+                    .addOnCompleteListener { task ->
+                        val callBackLocation = task.result
+                        if (callBackLocation == null) {
+                            requestNewLocationData()
+                        } else {
+                            location = callBackLocation.latitude to callBackLocation.longitude
+                        }
                     }
-                }
-                .addOnFailureListener {
-                    Timber.e("Getting location failed")
-                }
+            } else {
+                Toast.makeText(appContext,
+                    getString(R.string.please_turn_on_your_location), Toast.LENGTH_LONG)
+                    .show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        }
+    }
+    @SuppressLint("MissingPermission")
+    private fun requestNewLocationData() {
+        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000)
+            .setWaitForAccurateLocation(false)
+            .setMinUpdateIntervalMillis(0)
+            .setMaxUpdateDelayMillis(1000)
+            .build()
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity as MainActivity)
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.getMainLooper()
+        )
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        val locationManager = (activity as MainActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+        return locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+    private val locationCallback: LocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            with(locationResult){
+                location = (lastLocation?.latitude ?: 0.1) to (lastLocation?.longitude ?: 0.1)
+            }
+
         }
     }
 

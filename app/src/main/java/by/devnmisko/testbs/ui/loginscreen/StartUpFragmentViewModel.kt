@@ -39,10 +39,10 @@ class StartUpFragmentViewModel @Inject constructor(
         signInUseCase(input.toDomainModel()).onEach {
             _loginState.value = it
             when (it.status) {
-                    Output.Status.SUCCESS-> {
-                        saveCredentials(it.data)
-                        _loadingState.value = false
-                    }
+                Output.Status.SUCCESS -> {
+                    saveCredentials(it.data)
+                    _loadingState.value = false
+                }
 
                 Output.Status.ERROR -> _loadingState.value = false
                 Output.Status.LOADING -> _loadingState.value = true

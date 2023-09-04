@@ -2,6 +2,8 @@ package by.devnmisko.testbs.utils
 
 object Const {
     const val INVALID_ID = -1
+    const val DEFAULT_IMAGE_SIZE = 640
+
     object Pattern {
         const val USERNAME_PATTERN = "[a-z0-9_\\-.@]+"
         const val DATE_PATTERN = "dd.MM.yyyy"

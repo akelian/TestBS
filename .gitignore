@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+/buildSrc/build/classes/kotlin/main/AppDependencies$UI.class
+/buildSrc/build/kotlin/compileKotlin/local-state/build-history.bin
+/buildSrc/build/libs/buildSrc.jar
+/buildSrc/build/kotlin/compileKotlin/cacheable
+/buildSrc/build/classes/kotlin/

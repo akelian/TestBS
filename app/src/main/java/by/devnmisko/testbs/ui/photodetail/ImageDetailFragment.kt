@@ -52,6 +52,7 @@ class ImageDetailFragment : BaseFragment<FragmentImageDetailBinding>(), OnCommen
     override fun setupUI() {
         with(binding){
             Glide.with(this@ImageDetailFragment).load(imageUrl).into(image)
+            image.rotation = 90F
             date.text = getDate(imageDate)
             commentsList.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, true)
             commentsList.adapter= adapter
@@ -60,7 +61,7 @@ class ImageDetailFragment : BaseFragment<FragmentImageDetailBinding>(), OnCommen
                 progress.isVisible = state.append == LoadState.Loading
                 if ( state.append.endOfPaginationReached )
                 {
-                    if ( adapter.itemCount < 1)
+                    if (adapter.itemCount < 1)
                         emptyListMessage.show()
                     else
                         emptyListMessage.hide()
@@ -126,7 +127,7 @@ class ImageDetailFragment : BaseFragment<FragmentImageDetailBinding>(), OnCommen
                         binding.progress.hide()
                         Toast.makeText(
                             context,
-                            getString(R.string.image_successfully_remove),
+                            getString(R.string.comment_successfully_remove),
                             Toast.LENGTH_SHORT
                         ).show()
                         adapter.refresh()
@@ -134,7 +135,7 @@ class ImageDetailFragment : BaseFragment<FragmentImageDetailBinding>(), OnCommen
 
                     Output.Status.ERROR -> {
                         binding.progress.hide()
-                        buildErrorDialog(output.message)
+                        buildErrorDialog(output.message).show()
                     }
 
                     Output.Status.LOADING -> {
